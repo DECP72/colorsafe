@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>AlertaVoz - Menú</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header><h1>Menú Principal</h1></header>
+  <main class="menu">
+    <button onclick="location.href='index.html'">🔊 Activar escucha</button>
+    <button onclick="location.href='config.html'">⚙️ Configuración</button>
+    <button onclick="navigator.geolocation.getCurrentPosition(p => alert('Ubicación: '+p.coords.latitude+','+p.coords.longitude), e => alert('No disponible'))">📍 Enviar ubicación</button>
+    <button onclick="repetirPalabraClave()">🎤 Micrófono</button>
+    <!-- <button onclick="alert('🚨 Ver alertas (demo)')">Alertas</button>-->
+    <button onclick="alert('Sesión cerrada'); location.href='index.html'">Salir</button>
+    
+  </main> 
+  <script src="js/voz.js"></script>
+  <script>
+    // si no hay ID de usuario, redirigir a configuración para registrarse
+    if (!localStorage.getItem('idUsuario')) {
+      location.href='config.html';
+    }
+    // function para repetir la palabra clave
+    async function repetirPalabraClave() {
+     // iniciar(); // empieza a escuchar
+      const palabraClave =  localStorage.getItem('palabraClave')
+      const palabra = await OptenerPalabra(); // espera el resultado
+      if (palabra.toLowerCase().includes(palabraClave.toLowerCase()))
+        alert('Palabra clave reconocida correctamente.');
+      else
+      alert('Palabras detectadas: ' + palabra);
+    }
+  </script>
+</body>
+</html>

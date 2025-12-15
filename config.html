@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>AlertaVoz - Configuración</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header><h1>Configuración</h1></header>
+
+  <main class="config">
+    <label>ID del dispositivo: <span id="deviceId">(sin asignar)</span></label>
+
+    <br>
+    
+    <div class="block">
+      <h3>Tus datos</h3>
+      <input id="personalPhone" placeholder="Teléfono personal" />
+      <input id="emergencyPhone" placeholder="Teléfono de emergencia" />
+      <input type="password" id="intPalabraClave" placeholder="Palabra clave (voz)" readonly />
+      <input id="Nombre" placeholder="Nombre de pila" />  
+      <div>
+        <label>Ubicación actual: </label>
+        <span id="locText">(no detectada)</span>
+        <button onclick="getLocation()">Obtener ubicación</button>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Mis contactos (5)</h3>
+      <p class="muted">Si no agregás contactos, el sistema te proveerá sugerencias basadas en la ubicación.</p>
+      <div id="contactsInputs">
+        <input id="c1" placeholder="Contacto 1 (teléfono)" />
+        <input id="c2" placeholder="Contacto 2 (teléfono)" />
+        <input id="c3" placeholder="Contacto 3 (teléfono)" />
+        <input id="c4" placeholder="Contacto 4 (teléfono)" />
+        <input id="c5" placeholder="Contacto 5 (teléfono)" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="sendBtn">📤 Enviar / Actualizar</button>
+      <button id="deleteBtn">🗑️ Borrar (opciones)</button>
+      <button id="changePhoneBtn">📱 Cambiar teléfono</button>
+      <button onclick="location.href='menu.html'">✖️ Salir</button>
+    </div>
+
+    <div id="deleteOptions" class="dropdown" style="display:none">
+      <button onclick="deleteMyData()">Borrar mis datos</button>
+      <button onclick="deleteMyContacts()">Borrar mis contactos</button>
+      <button onclick="unlockPhoneChange()">Cambiar de teléfono</button>
+      <button onclick="toggleDeleteOptions(false)">Cancelar</button>
+    </div>
+
+    <p id="cfgStatus"></p>
+  </main>
+
+  <script src="js/voz.js"></script>
+  <script src="js/config.js"></script>
+</body>
+</html>
